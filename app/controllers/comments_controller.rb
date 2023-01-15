@@ -6,18 +6,17 @@ class CommentsController < ApplicationController
     @comment = @post.comments.create(comment_params)
     @comment.user = current_user
     if @comment.save
-      flash[:notice] = "Comment was created successfully"
-      redirect_to post_path(@post)
+      flash[:notice] = 'Comment was created successfully'
     else
-      flash[:alert] = "Comment has not been created"
-      redirect_to post_path(@post)
+      flash[:alert] = 'Comment has not been created'
     end
+    redirect_to post_path(@post)
   end
 
   def destroy
     @comment = @post.comments.find(params[:id])
     @comment.destroy
-    flash[:notice] = "Comment was deleted successfully"
+    flash[:notice] = 'Comment was deleted successfully'
     redirect_to post_path(@post)
   end
 
